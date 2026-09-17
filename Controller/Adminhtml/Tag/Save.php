@@ -11,11 +11,17 @@ use Magento\Framework\App\Filesystem\DirectoryList;
  * @module   CmsBlockScheduler
  * @author   WeltPixel Developer
  */
-class Save extends \WeltPixel\CmsBlockScheduler\Controller\Adminhtml\Tag
+class Save extends \WeltPixel\CmsBlockScheduler\Controller\Adminhtml\Tag implements
+    \Magento\Framework\App\Action\HttpPostActionInterface
 {
     const PARAM_CRUD_ID = 'id';
+
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * This writes a row, so it accepts POST only, for the same reason as Delete. The edit form
+     * already posts, and the body below already did nothing without post data, so declaring the
+     * interface makes the existing expectation explicit rather than changing the flow.
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
      */
     public function execute()
     {

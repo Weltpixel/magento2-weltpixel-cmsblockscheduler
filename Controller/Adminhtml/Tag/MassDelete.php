@@ -9,10 +9,14 @@ namespace WeltPixel\CmsBlockScheduler\Controller\Adminhtml\Tag;
  * @module   CmsBlockScheduler
  * @author   WeltPixel Developer
  */
-class MassDelete extends \WeltPixel\CmsBlockScheduler\Controller\Adminhtml\Tag
+class MassDelete extends \WeltPixel\CmsBlockScheduler\Controller\Adminhtml\Tag implements
+    \Magento\Framework\App\Action\HttpPostActionInterface
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * This deletes rows, so it accepts POST only, for the same reason as Delete. The grid's
+     * massaction already posts: its template wraps the selection in a form with method="post".
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
      */
     public function execute()
     {
